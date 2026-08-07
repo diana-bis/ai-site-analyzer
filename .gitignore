@@ -12,5 +12,4 @@ frontend/dist/
 
 # Runtime artifacts
 backend/data/
-backend/storage/uploads/
 agentic_tests/artifacts/
