@@ -5,9 +5,7 @@ from app.database import Base
 
 
 class Analysis(Base):
-    """Storage layer only. Allowed values for analysis_type, image_source,
-    and status are enforced by Pydantic Literal types (Step 3), not here —
-    see app.config for the shared value sets."""
+    # Database model for an analysis record. Each row corresponds to a single analysis request and its outcome.
 
     __tablename__ = "analyses"
 

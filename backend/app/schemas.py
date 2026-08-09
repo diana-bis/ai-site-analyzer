@@ -11,10 +11,7 @@ AnalysisStatus = Literal[ANALYSIS_STATUSES]
 
 
 class AnalysisCreateRequest(BaseModel):
-    """Non-file form fields for POST /api/analysis. The uploaded image
-    itself is handled separately as UploadFile in the route signature,
-    since multipart/form-data isn't a JSON body Pydantic can parse here."""
-
+    # Fields required to create a new analysis
     site_name: str
     capture_datetime: datetime
     image_source: ImageSource
@@ -22,6 +19,7 @@ class AnalysisCreateRequest(BaseModel):
 
 
 class AnalysisResponse(BaseModel):
+    # Fields returned in the API response for an analysis
     model_config = ConfigDict(from_attributes=True)
 
     id: int
@@ -44,3 +42,19 @@ class AnalysisResponse(BaseModel):
     confidence_score: Optional[float] = None
     detections_count: Optional[int] = None
     processing_time_ms: Optional[int] = None
+
+
+class DashboardResponse(BaseModel):
+    # Aggregated statistics displayed on the dashboard
+    total_analyses: int
+    total_images: int
+    total_detections: int
+
+    by_analysis_type: dict[str, int]
+    by_category: dict[str, int]
+
+    recent_analyses: list[AnalysisResponse]
+    failed_analyses: list[AnalysisResponse]
+
+    average_processing_time_ms: Optional[float] = None
+    average_confidence_score: Optional[float] = None

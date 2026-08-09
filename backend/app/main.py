@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.database import Base, engine
 from app import models  # noqa: F401 — import needed so Base.metadata knows about Analysis
-from app.routers import analysis, health
+from app.routers import analysis, dashboard, health
 
 
 @asynccontextmanager
@@ -38,3 +38,4 @@ app.add_middleware(
 
 app.include_router(health.router, prefix="/api", tags=["health"])
 app.include_router(analysis.router, prefix="/api", tags=["analysis"])
+app.include_router(dashboard.router, prefix="/api", tags=["dashboard"])
