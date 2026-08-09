@@ -7,23 +7,24 @@ RECENT_ANALYSES_LIMIT = 5
 
 
 def get_dashboard_data(db: Session) -> dict:
-    """Aggregation queries for GET /api/dashboard. Averages naturally skip
-    NULLs (SQL AVG semantics): processing_time_ms is only set on completed
-    analyses, confidence_score only on classification results — so no
-    extra filtering is needed for either average to be meaningful."""
+    """Collect dashboard statistics and recent analysis data"""
 
+    # Count the total number of analyses
     total_analyses = db.query(func.count(Analysis.id)).scalar()
 
+    # Sum the number of detected vehicles across all analyses
     total_detections = db.query(
         func.coalesce(func.sum(Analysis.detections_count), 0)
     ).scalar()
 
+    # Count analyses by analysis type
     by_analysis_type = dict(
         db.query(Analysis.analysis_type, func.count(Analysis.id))
         .group_by(Analysis.analysis_type)
         .all()
     )
 
+    # Count analyses by their primary category
     by_category = dict(
         db.query(Analysis.primary_category, func.count(Analysis.id))
         .filter(Analysis.primary_category.isnot(None))
@@ -31,6 +32,7 @@ def get_dashboard_data(db: Session) -> dict:
         .all()
     )
 
+    # Get the most recent analyses
     recent_analyses = (
         db.query(Analysis)
         .order_by(Analysis.created_at.desc())
@@ -38,6 +40,7 @@ def get_dashboard_data(db: Session) -> dict:
         .all()
     )
 
+    # Get all failed analyses
     failed_analyses = (
         db.query(Analysis)
         .filter(Analysis.status == "failed")
@@ -45,6 +48,7 @@ def get_dashboard_data(db: Session) -> dict:
         .all()
     )
 
+    # Calculate average processing time and confidence score
     avg_processing_time = db.query(func.avg(Analysis.processing_time_ms)).scalar()
     avg_confidence = db.query(func.avg(Analysis.confidence_score)).scalar()
 

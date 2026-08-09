@@ -13,3 +13,4 @@ frontend/dist/
 # Runtime artifacts
 backend/data/
 agentic_tests/artifacts/
+*.log

@@ -36,6 +36,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Register the API routers for the three main endpoints: health, analysis, and dashboard.
 app.include_router(health.router, prefix="/api", tags=["health"])
 app.include_router(analysis.router, prefix="/api", tags=["analysis"])
 app.include_router(dashboard.router, prefix="/api", tags=["dashboard"])
