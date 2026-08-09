@@ -20,3 +20,7 @@ export function createAnalysis({
     headers: { "Content-Type": "multipart/form-data" },
   });
 }
+
+export function getAnalysisById(id) {
+  return client.get(`/api/analysis/${id}`);
+}

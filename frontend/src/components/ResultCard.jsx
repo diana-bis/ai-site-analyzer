@@ -1,5 +1,6 @@
 import {
   Alert,
+  Box,
   Card,
   CardContent,
   Chip,
@@ -36,11 +37,13 @@ function VehicleDetectionDetails({ result }) {
         Vehicles detected: <strong>{result.total_count}</strong>
       </Typography>
       <Stack direction="row" spacing={1} flexWrap="wrap">
-        {Object.entries(result.count_by_type)
-          .filter(([, count]) => count > 0)
-          .map(([type, count]) => (
-            <Chip key={type} label={`${type}: ${count}`} variant="outlined" />
-          ))}
+        {result.detections.map((detection, index) => (
+          <Chip
+            key={index}
+            label={`${detection.vehicle_type} (${Math.round(detection.confidence * 100)}%)`}
+            variant="outlined"
+          />
+        ))}
       </Stack>
     </Stack>
   );
@@ -72,7 +75,26 @@ const DETAILS_BY_TYPE = {
   image_quality: ImageQualityDetails,
 };
 
-export default function ResultCard({ analysis }) {
+// Boxes are normalized (0-1 fractions), so they're positioned with plain
+// CSS percentages - no JS measuring of the rendered image size needed.
+function BoundingBoxOverlay({ detections }) {
+  return detections.map((detection, index) => (
+    <Box
+      key={index}
+      sx={{
+        position: "absolute",
+        left: `${detection.bounding_box.x * 100}%`,
+        top: `${detection.bounding_box.y * 100}%`,
+        width: `${detection.bounding_box.width * 100}%`,
+        height: `${detection.bounding_box.height * 100}%`,
+        border: "2px solid #d32f2f",
+        boxSizing: "border-box",
+      }}
+    />
+  ));
+}
+
+export default function ResultCard({ analysis, showImage = false }) {
   if (analysis.status === "failed") {
     return (
       <Card variant="outlined">
@@ -87,6 +109,7 @@ export default function ResultCard({ analysis }) {
   }
 
   const DetailsComponent = DETAILS_BY_TYPE[analysis.analysis_type];
+  const imageUrl = `${import.meta.env.VITE_API_BASE_URL}/api/analysis/${analysis.id}/image`;
 
   return (
     <Card variant="outlined">
@@ -97,6 +120,16 @@ export default function ResultCard({ analysis }) {
         <Typography variant="body2" color="text.secondary" gutterBottom>
           {analysis.analysis_type} &middot; {analysis.processing_time_ms}ms
         </Typography>
+
+        {showImage && (
+          <Box sx={{ position: "relative", mb: 2, lineHeight: 0 }}>
+            <img src={imageUrl} alt={analysis.site_name} style={{ width: "100%" }} />
+            {analysis.analysis_type === "vehicle_detection" && (
+              <BoundingBoxOverlay detections={analysis.result.detections} />
+            )}
+          </Box>
+        )}
+
         <Divider sx={{ my: 1 }} />
         {DetailsComponent && <DetailsComponent result={analysis.result} />}
       </CardContent>

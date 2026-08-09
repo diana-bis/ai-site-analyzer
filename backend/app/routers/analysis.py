@@ -1,8 +1,10 @@
 from datetime import datetime
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
+from app.config import settings
 from app.database import get_db
 from app.models import Analysis
 from app.schemas import AnalysisResponse, AnalysisType, ImageSource
@@ -49,3 +51,21 @@ def get_analysis(analysis_id: int, db: Session = Depends(get_db)):
     if analysis is None:
         raise HTTPException(status_code=404, detail=f"Analysis {analysis_id} not found.")
     return analysis
+
+
+# Serve the image file for a completed analysis. Looks the file up by id
+# through the DB, never from a client-supplied filename/path - avoids
+# exposing the whole uploads directory (see Step 7 design discussion).
+@router.get("/analysis/{analysis_id}/image")
+def get_analysis_image(analysis_id: int, db: Session = Depends(get_db)):
+    analysis = db.get(Analysis, analysis_id)
+    if analysis is None:
+        raise HTTPException(status_code=404, detail=f"Analysis {analysis_id} not found.")
+    if analysis.status == "failed":
+        raise HTTPException(status_code=404, detail=f"Analysis {analysis_id} has no image.")
+
+    image_path = settings.uploads_dir / analysis.stored_filename
+    if not image_path.exists():
+        raise HTTPException(status_code=404, detail=f"Analysis {analysis_id} has no image.")
+
+    return FileResponse(image_path, media_type=analysis.content_type)
