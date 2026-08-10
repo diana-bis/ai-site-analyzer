@@ -26,8 +26,11 @@ class TestPlannerAgent:
         self._next_id = 1
 
     def generate_test_cases(self):
-        # Build the complete list of test cases
+        # Build the complete list of test cases. The empty-database case
+        # must run first, before anything else creates data - see its
+        # own comment below for why.
         cases = []
+        cases.append(self._empty_state_case())
         cases += self._functional_cases()
         cases += self._negative_cases()
         cases += self._api_cases()
@@ -56,6 +59,24 @@ class TestPlannerAgent:
         }
         self._next_id += 1
         return case
+
+    # --- Empty state: must run before any other test creates data ---
+
+    def _empty_state_case(self):
+        # This can only genuinely test "no data" if the database really is
+        # empty when it runs - which is only true if it runs first, before
+        # any other test creates an analysis. Ordering IS the precondition.
+        return self._new_case(
+            name="Dashboard behaves correctly with no data",
+            category="dashboard",
+            priority="medium",
+            steps=["Query the dashboard on an empty database"],
+            preconditions=["The database has no analyses yet (this test must run first)"],
+            action={
+                "type": "api", "method": "GET", "path": "/api/dashboard", "fixture": None, "form": None,
+                "expect": {"status": 200, "json_field_values": {"total_analyses": 0}},
+            },
+        )
 
     # --- Functional: one case per analysis type + one per image source ---
 
@@ -278,16 +299,6 @@ class TestPlannerAgent:
                 priority="medium",
                 steps=["Open the dashboard", "Try to filter or sort the analyses table"],
                 action={"type": "ui", "flow": "dashboard_filters"},
-            ),
-            self._new_case(
-                name="Dashboard behaves correctly with no data",
-                category="dashboard",
-                priority="medium",
-                steps=["Query the dashboard on an empty database"],
-                action={
-                    "type": "api", "method": "GET", "path": "/api/dashboard", "fixture": None, "form": None,
-                    "expect": {"status": 200, "json_fields": ["total_analyses"]},
-                },
             ),
         ]
 

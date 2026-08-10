@@ -1,6 +1,32 @@
 [
   {
     "id": "TC-001",
+    "name": "Dashboard behaves correctly with no data",
+    "category": "dashboard",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The database has no analyses yet (this test must run first)"
+    ],
+    "steps": [
+      "Query the dashboard on an empty database"
+    ],
+    "action": {
+      "type": "api",
+      "method": "GET",
+      "path": "/api/dashboard",
+      "fixture": null,
+      "form": null,
+      "expect": {
+        "status": 200,
+        "json_field_values": {
+          "total_analyses": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "TC-002",
     "name": "Run classification analysis on a valid image",
     "category": "functional",
     "type": "api",
@@ -35,7 +61,7 @@
     }
   },
   {
-    "id": "TC-002",
+    "id": "TC-003",
     "name": "Run vehicle_detection analysis on a valid image",
     "category": "functional",
     "type": "api",
@@ -70,7 +96,7 @@
     }
   },
   {
-    "id": "TC-003",
+    "id": "TC-004",
     "name": "Run image_quality analysis on a valid image",
     "category": "functional",
     "type": "api",
@@ -105,7 +131,7 @@
     }
   },
   {
-    "id": "TC-004",
+    "id": "TC-005",
     "name": "Submit an analysis with image source: static_camera",
     "category": "functional",
     "type": "api",
@@ -133,7 +159,7 @@
     }
   },
   {
-    "id": "TC-005",
+    "id": "TC-006",
     "name": "Submit an analysis with image source: drone",
     "category": "functional",
     "type": "api",
@@ -161,7 +187,7 @@
     }
   },
   {
-    "id": "TC-006",
+    "id": "TC-007",
     "name": "Submit an analysis with image source: manual_upload",
     "category": "functional",
     "type": "api",
@@ -189,7 +215,7 @@
     }
   },
   {
-    "id": "TC-007",
+    "id": "TC-008",
     "name": "Display the analysis result after a successful run",
     "category": "functional",
     "type": "ui",
@@ -207,7 +233,7 @@
     }
   },
   {
-    "id": "TC-008",
+    "id": "TC-009",
     "name": "Open the dashboard",
     "category": "functional",
     "type": "ui",
@@ -224,7 +250,7 @@
     }
   },
   {
-    "id": "TC-009",
+    "id": "TC-010",
     "name": "Review a previous analysis from the dashboard",
     "category": "functional",
     "type": "ui",
@@ -242,7 +268,7 @@
     }
   },
   {
-    "id": "TC-010",
+    "id": "TC-011",
     "name": "Upload a non-image file",
     "category": "negative",
     "type": "api",
@@ -270,7 +296,7 @@
     }
   },
   {
-    "id": "TC-011",
+    "id": "TC-012",
     "name": "Upload a corrupted image",
     "category": "negative",
     "type": "api",
@@ -298,7 +324,7 @@
     }
   },
   {
-    "id": "TC-012",
+    "id": "TC-013",
     "name": "Upload an oversized file",
     "category": "negative",
     "type": "api",
@@ -326,7 +352,7 @@
     }
   },
   {
-    "id": "TC-013",
+    "id": "TC-014",
     "name": "Submit missing required fields",
     "category": "negative",
     "type": "api",
@@ -352,7 +378,7 @@
     }
   },
   {
-    "id": "TC-014",
+    "id": "TC-015",
     "name": "Request analysis without an image",
     "category": "negative",
     "type": "api",
@@ -380,7 +406,7 @@
     }
   },
   {
-    "id": "TC-015",
+    "id": "TC-016",
     "name": "Submit an unsupported analysis_type value",
     "category": "negative",
     "type": "api",
@@ -408,7 +434,7 @@
     }
   },
   {
-    "id": "TC-016",
+    "id": "TC-017",
     "name": "Liveness check",
     "category": "api",
     "type": "api",
@@ -434,7 +460,7 @@
     }
   },
   {
-    "id": "TC-017",
+    "id": "TC-018",
     "name": "Create a new analysis from an uploaded image",
     "category": "api",
     "type": "api",
@@ -467,7 +493,7 @@
     }
   },
   {
-    "id": "TC-018",
+    "id": "TC-019",
     "name": "List all analyses",
     "category": "api",
     "type": "api",
@@ -491,7 +517,7 @@
     }
   },
   {
-    "id": "TC-019",
+    "id": "TC-020",
     "name": "Retrieve a single analysis by id",
     "category": "api",
     "type": "api",
@@ -518,7 +544,7 @@
     }
   },
   {
-    "id": "TC-020",
+    "id": "TC-021",
     "name": "Retrieve a nonexistent analysis id",
     "category": "api",
     "type": "api",
@@ -544,7 +570,7 @@
     }
   },
   {
-    "id": "TC-021",
+    "id": "TC-022",
     "name": "Aggregated dashboard statistics",
     "category": "api",
     "type": "api",
@@ -572,7 +598,7 @@
     }
   },
   {
-    "id": "TC-022",
+    "id": "TC-023",
     "name": "Validate timeout behavior",
     "category": "api",
     "type": "api",
@@ -592,7 +618,7 @@
     }
   },
   {
-    "id": "TC-023",
+    "id": "TC-024",
     "name": "Validate algorithm-service failure handling",
     "category": "api",
     "type": "api",
@@ -614,7 +640,7 @@
     }
   },
   {
-    "id": "TC-024",
+    "id": "TC-025",
     "name": "Dashboard analysis count updates after a new analysis",
     "category": "dashboard",
     "type": "api",
@@ -633,7 +659,7 @@
     }
   },
   {
-    "id": "TC-025",
+    "id": "TC-026",
     "name": "Failed analysis is visible on the dashboard",
     "category": "dashboard",
     "type": "api",
@@ -651,7 +677,7 @@
     }
   },
   {
-    "id": "TC-026",
+    "id": "TC-027",
     "name": "Average processing time is calculated correctly",
     "category": "dashboard",
     "type": "api",
@@ -669,7 +695,7 @@
     }
   },
   {
-    "id": "TC-027",
+    "id": "TC-028",
     "name": "Dashboard supports filtering and sorting",
     "category": "dashboard",
     "type": "ui",
@@ -684,32 +710,6 @@
     "action": {
       "type": "ui",
       "flow": "dashboard_filters"
-    }
-  },
-  {
-    "id": "TC-028",
-    "name": "Dashboard behaves correctly with no data",
-    "category": "dashboard",
-    "type": "api",
-    "priority": "medium",
-    "preconditions": [
-      "The application is running"
-    ],
-    "steps": [
-      "Query the dashboard on an empty database"
-    ],
-    "action": {
-      "type": "api",
-      "method": "GET",
-      "path": "/api/dashboard",
-      "fixture": null,
-      "form": null,
-      "expect": {
-        "status": 200,
-        "json_fields": [
-          "total_analyses"
-        ]
-      }
     }
   },
   {
