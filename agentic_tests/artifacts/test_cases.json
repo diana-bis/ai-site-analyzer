@@ -1,0 +1,831 @@
+[
+  {
+    "id": "TC-001",
+    "name": "Run classification analysis on a valid image",
+    "category": "functional",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Upload a valid JPG image",
+      "Select analysis type: classification",
+      "Submit the analysis"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "valid_jpeg",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "classification",
+        "image_source": "drone"
+      },
+      "expect": {
+        "status": 201,
+        "json_fields": [
+          "id",
+          "status",
+          "result"
+        ]
+      }
+    }
+  },
+  {
+    "id": "TC-002",
+    "name": "Run vehicle_detection analysis on a valid image",
+    "category": "functional",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Upload a valid JPG image",
+      "Select analysis type: vehicle_detection",
+      "Submit the analysis"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "valid_jpeg",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "vehicle_detection",
+        "image_source": "drone"
+      },
+      "expect": {
+        "status": 201,
+        "json_fields": [
+          "id",
+          "status",
+          "result"
+        ]
+      }
+    }
+  },
+  {
+    "id": "TC-003",
+    "name": "Run image_quality analysis on a valid image",
+    "category": "functional",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Upload a valid JPG image",
+      "Select analysis type: image_quality",
+      "Submit the analysis"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "valid_jpeg",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "image_quality",
+        "image_source": "drone"
+      },
+      "expect": {
+        "status": 201,
+        "json_fields": [
+          "id",
+          "status",
+          "result"
+        ]
+      }
+    }
+  },
+  {
+    "id": "TC-004",
+    "name": "Submit an analysis with image source: static_camera",
+    "category": "functional",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Submit a valid analysis with image_source=static_camera"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "valid_jpeg",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "classification",
+        "image_source": "static_camera"
+      },
+      "expect": {
+        "status": 201
+      }
+    }
+  },
+  {
+    "id": "TC-005",
+    "name": "Submit an analysis with image source: drone",
+    "category": "functional",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Submit a valid analysis with image_source=drone"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "valid_jpeg",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "classification",
+        "image_source": "drone"
+      },
+      "expect": {
+        "status": 201
+      }
+    }
+  },
+  {
+    "id": "TC-006",
+    "name": "Submit an analysis with image source: manual_upload",
+    "category": "functional",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Submit a valid analysis with image_source=manual_upload"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "valid_jpeg",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "classification",
+        "image_source": "manual_upload"
+      },
+      "expect": {
+        "status": 201
+      }
+    }
+  },
+  {
+    "id": "TC-007",
+    "name": "Display the analysis result after a successful run",
+    "category": "functional",
+    "type": "ui",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Run a valid analysis",
+      "Check that the result card appears with data"
+    ],
+    "action": {
+      "type": "ui",
+      "flow": "display_result"
+    }
+  },
+  {
+    "id": "TC-008",
+    "name": "Open the dashboard",
+    "category": "functional",
+    "type": "ui",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Click the Dashboard link in the nav bar"
+    ],
+    "action": {
+      "type": "ui",
+      "flow": "open_dashboard"
+    }
+  },
+  {
+    "id": "TC-009",
+    "name": "Review a previous analysis from the dashboard",
+    "category": "functional",
+    "type": "ui",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Open the dashboard",
+      "Click a row in the recent analyses table"
+    ],
+    "action": {
+      "type": "ui",
+      "flow": "review_previous_analysis"
+    }
+  },
+  {
+    "id": "TC-010",
+    "name": "Upload a non-image file",
+    "category": "negative",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Submit an analysis with a text/plain file"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "text_file_renamed_jpg",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "classification",
+        "image_source": "drone"
+      },
+      "expect": {
+        "status": 400
+      }
+    }
+  },
+  {
+    "id": "TC-011",
+    "name": "Upload a corrupted image",
+    "category": "negative",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Submit an analysis with truncated/broken image bytes"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "corrupted_image",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "classification",
+        "image_source": "drone"
+      },
+      "expect": {
+        "status": 400
+      }
+    }
+  },
+  {
+    "id": "TC-012",
+    "name": "Upload an oversized file",
+    "category": "negative",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Submit a file larger than 10485760 bytes"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "oversized_file",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "classification",
+        "image_source": "drone"
+      },
+      "expect": {
+        "status": 400
+      }
+    }
+  },
+  {
+    "id": "TC-013",
+    "name": "Submit missing required fields",
+    "category": "negative",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Submit an analysis request with site_name omitted"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "valid_jpeg",
+      "form": {
+        "analysis_type": "classification",
+        "image_source": "drone"
+      },
+      "expect": {
+        "status": 422
+      }
+    }
+  },
+  {
+    "id": "TC-014",
+    "name": "Request analysis without an image",
+    "category": "negative",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Submit an analysis request with no file attached"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": null,
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "classification",
+        "image_source": "drone"
+      },
+      "expect": {
+        "status": 422
+      }
+    }
+  },
+  {
+    "id": "TC-015",
+    "name": "Submit an unsupported analysis_type value",
+    "category": "negative",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Submit an analysis with analysis_type=spaceship"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "valid_jpeg",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "spaceship",
+        "image_source": "drone"
+      },
+      "expect": {
+        "status": 422
+      }
+    }
+  },
+  {
+    "id": "TC-016",
+    "name": "Liveness check",
+    "category": "api",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "GET /api/health"
+    ],
+    "action": {
+      "type": "api",
+      "method": "GET",
+      "path": "/api/health",
+      "fixture": null,
+      "form": null,
+      "expect": {
+        "status": 200,
+        "json_fields": [
+          "status"
+        ]
+      }
+    }
+  },
+  {
+    "id": "TC-017",
+    "name": "Create a new analysis from an uploaded image",
+    "category": "api",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "POST /api/analysis"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "valid_jpeg",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "classification",
+        "image_source": "drone"
+      },
+      "expect": {
+        "status": 201,
+        "json_fields": [
+          "id",
+          "status",
+          "result"
+        ]
+      }
+    }
+  },
+  {
+    "id": "TC-018",
+    "name": "List all analyses",
+    "category": "api",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "GET /api/analysis"
+    ],
+    "action": {
+      "type": "api",
+      "method": "GET",
+      "path": "/api/analysis",
+      "fixture": null,
+      "form": null,
+      "expect": {
+        "status": 200,
+        "json_fields": []
+      }
+    }
+  },
+  {
+    "id": "TC-019",
+    "name": "Retrieve a single analysis by id",
+    "category": "api",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "GET /api/analysis/{id}"
+    ],
+    "action": {
+      "type": "api",
+      "method": "GET",
+      "path": "/api/analysis/{id}",
+      "fixture": null,
+      "form": null,
+      "expect": {
+        "status": 200,
+        "json_fields": [
+          "id",
+          "status"
+        ]
+      }
+    }
+  },
+  {
+    "id": "TC-020",
+    "name": "Retrieve a nonexistent analysis id",
+    "category": "api",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "GET /api/analysis/{id}"
+    ],
+    "action": {
+      "type": "api",
+      "method": "GET",
+      "path": "/api/analysis/{id}",
+      "fixture": null,
+      "form": null,
+      "expect": {
+        "status": 404,
+        "json_fields": [
+          "detail"
+        ]
+      }
+    }
+  },
+  {
+    "id": "TC-021",
+    "name": "Aggregated dashboard statistics",
+    "category": "api",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "GET /api/dashboard"
+    ],
+    "action": {
+      "type": "api",
+      "method": "GET",
+      "path": "/api/dashboard",
+      "fixture": null,
+      "form": null,
+      "expect": {
+        "status": 200,
+        "json_fields": [
+          "total_analyses",
+          "by_analysis_type",
+          "recent_analyses"
+        ]
+      }
+    }
+  },
+  {
+    "id": "TC-022",
+    "name": "Validate timeout behavior",
+    "category": "api",
+    "type": "api",
+    "priority": "low",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Submit an analysis while the backend is unresponsive"
+    ],
+    "action": {
+      "type": "api",
+      "flow": "simulate_timeout",
+      "expect": {
+        "status": 504
+      }
+    }
+  },
+  {
+    "id": "TC-023",
+    "name": "Validate algorithm-service failure handling",
+    "category": "api",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Trigger an analyzer failure",
+      "Confirm the analysis is saved with status=failed"
+    ],
+    "action": {
+      "type": "api",
+      "flow": "simulate_analyzer_failure",
+      "expect": {
+        "status": "failed",
+        "error_message_present": true
+      }
+    }
+  },
+  {
+    "id": "TC-024",
+    "name": "Dashboard analysis count updates after a new analysis",
+    "category": "dashboard",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Note total_analyses",
+      "Run one analysis",
+      "Check total_analyses increased by 1"
+    ],
+    "action": {
+      "type": "api",
+      "flow": "count_increases_after_analysis"
+    }
+  },
+  {
+    "id": "TC-025",
+    "name": "Failed analysis is visible on the dashboard",
+    "category": "dashboard",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Cause an analysis to fail",
+      "Check it appears in failed_analyses"
+    ],
+    "action": {
+      "type": "api",
+      "flow": "failed_analysis_visible"
+    }
+  },
+  {
+    "id": "TC-026",
+    "name": "Average processing time is calculated correctly",
+    "category": "dashboard",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Run a few analyses",
+      "Compare average_processing_time_ms to a manual average"
+    ],
+    "action": {
+      "type": "api",
+      "flow": "average_processing_time_matches"
+    }
+  },
+  {
+    "id": "TC-027",
+    "name": "Dashboard supports filtering and sorting",
+    "category": "dashboard",
+    "type": "ui",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Open the dashboard",
+      "Try to filter or sort the analyses table"
+    ],
+    "action": {
+      "type": "ui",
+      "flow": "dashboard_filters"
+    }
+  },
+  {
+    "id": "TC-028",
+    "name": "Dashboard behaves correctly with no data",
+    "category": "dashboard",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Query the dashboard on an empty database"
+    ],
+    "action": {
+      "type": "api",
+      "method": "GET",
+      "path": "/api/dashboard",
+      "fixture": null,
+      "form": null,
+      "expect": {
+        "status": 200,
+        "json_fields": [
+          "total_analyses"
+        ]
+      }
+    }
+  },
+  {
+    "id": "TC-029",
+    "name": "Vehicle detection with no relevant objects",
+    "category": "ai_algorithm",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Run vehicle_detection until a result with total_count=0 occurs"
+    ],
+    "action": {
+      "type": "api",
+      "flow": "vehicle_detection_zero_count"
+    }
+  },
+  {
+    "id": "TC-030",
+    "name": "Vehicle detection with several vehicles",
+    "category": "ai_algorithm",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Run vehicle_detection until a result with total_count>3 occurs"
+    ],
+    "action": {
+      "type": "api",
+      "flow": "vehicle_detection_several"
+    }
+  },
+  {
+    "id": "TC-031",
+    "name": "Image quality flags a dark or blurred image",
+    "category": "ai_algorithm",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Run image_quality on a deliberately dark/blurred image"
+    ],
+    "action": {
+      "type": "api",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "dark_image",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "image_quality",
+        "image_source": "drone"
+      },
+      "expect": {
+        "json_fields": [
+          "result"
+        ]
+      }
+    }
+  },
+  {
+    "id": "TC-032",
+    "name": "Classification returns 'unclassified' for an unsupported scene",
+    "category": "ai_algorithm",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Run classification until a result with category=unclassified occurs"
+    ],
+    "action": {
+      "type": "api",
+      "flow": "classification_unclassified"
+    }
+  },
+  {
+    "id": "TC-033",
+    "name": "Classification returns a low-confidence result",
+    "category": "ai_algorithm",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Run classification until a result with confidence<0.6 occurs"
+    ],
+    "action": {
+      "type": "api",
+      "flow": "classification_low_confidence"
+    }
+  },
+  {
+    "id": "TC-034",
+    "name": "Same image submitted twice gives the same result",
+    "category": "ai_algorithm",
+    "type": "api",
+    "priority": "high",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Submit the same image twice with the same analysis_type",
+      "Compare the two results"
+    ],
+    "action": {
+      "type": "api",
+      "flow": "determinism_check"
+    }
+  }
+]

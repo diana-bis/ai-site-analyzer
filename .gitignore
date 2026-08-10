@@ -1,5 +1,6 @@
 # Python
 backend/.venv/
+agentic_tests/.venv/
 __pycache__/
 *.pyc
 
@@ -12,5 +13,6 @@ frontend/dist/
 
 # Runtime artifacts
 backend/data/
-agentic_tests/artifacts/
+agentic_tests/artifacts/*
+!agentic_tests/artifacts/test_cases.json
 *.log

@@ -15,7 +15,12 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:5173"
     db_filename: str = "analyzer.db"
 
-    model_config = SettingsConfigDict(env_file=".env")
+    # Absolute path, anchored to this file's location, not the process cwd -
+    # a relative ".env" here would load whatever .env happens to be in the
+    # caller's working directory (e.g. agentic_tests/.env), not backend's own.
+    model_config = SettingsConfigDict(
+        env_file=Path(__file__).resolve().parent.parent / ".env"
+    )
 
     @property
     def data_dir(self) -> Path:

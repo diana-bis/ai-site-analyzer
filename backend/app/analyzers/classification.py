@@ -14,7 +14,7 @@ CATEGORIES = [
 
 class ClassificationAnalyzer(BaseAnalyzer):
     """Deterministic mock: same image bytes always produce the same result,
-    so the agentic test suite can assert expected vs actual (CLAUDE.md #2)."""
+    so the agentic test suite can assert expected vs actual """
 
     def analyze(self, image_path: Path) -> dict:
         start = time.perf_counter()
