@@ -690,7 +690,12 @@
     ],
     "action": {
       "type": "api",
-      "flow": "count_increases_after_analysis"
+      "flow": "count_increases_after_analysis",
+      "expect": {
+        "json_field_values": {
+          "count_increased_by_one": true
+        }
+      }
     }
   },
   {
@@ -731,7 +736,12 @@
     ],
     "action": {
       "type": "api",
-      "flow": "average_processing_time_matches"
+      "flow": "average_processing_time_matches",
+      "expect": {
+        "json_field_values": {
+          "averages_match": true
+        }
+      }
     }
   },
   {
@@ -762,11 +772,24 @@
       "The application is running"
     ],
     "steps": [
-      "Run vehicle_detection until a result with total_count=0 occurs"
+      "Submit an image known to produce zero detections"
     ],
     "action": {
       "type": "api",
-      "flow": "vehicle_detection_zero_count"
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "zero_detection_image",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "vehicle_detection",
+        "image_source": "drone"
+      },
+      "expect": {
+        "json_field_values": {
+          "detections_count": 0
+        }
+      }
     }
   },
   {
@@ -779,11 +802,24 @@
       "The application is running"
     ],
     "steps": [
-      "Run vehicle_detection until a result with total_count>3 occurs"
+      "Submit an image known to produce more than 3 detections"
     ],
     "action": {
       "type": "api",
-      "flow": "vehicle_detection_several"
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "multi_detection_image",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "vehicle_detection",
+        "image_source": "drone"
+      },
+      "expect": {
+        "json_field_values": {
+          "detections_count": 6
+        }
+      }
     }
   },
   {
@@ -826,11 +862,24 @@
       "The application is running"
     ],
     "steps": [
-      "Run classification until a result with category=unclassified occurs"
+      "Submit an image known to classify as unclassified"
     ],
     "action": {
       "type": "api",
-      "flow": "classification_unclassified"
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "unclassified_image",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "classification",
+        "image_source": "drone"
+      },
+      "expect": {
+        "json_field_values": {
+          "primary_category": "unclassified"
+        }
+      }
     }
   },
   {
@@ -843,11 +892,24 @@
       "The application is running"
     ],
     "steps": [
-      "Run classification until a result with confidence<0.6 occurs"
+      "Submit an image known to produce confidence below 0.6"
     ],
     "action": {
       "type": "api",
-      "flow": "classification_low_confidence"
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "low_confidence_image",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "classification",
+        "image_source": "drone"
+      },
+      "expect": {
+        "json_field_values": {
+          "confidence_score": 0.56
+        }
+      }
     }
   },
   {
@@ -865,7 +927,12 @@
     ],
     "action": {
       "type": "api",
-      "flow": "determinism_check"
+      "flow": "determinism_check",
+      "expect": {
+        "json_field_values": {
+          "results_match": true
+        }
+      }
     }
   }
 ]

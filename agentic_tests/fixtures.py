@@ -80,6 +80,38 @@ def _blurred_image():
     return _save(blurred, "JPEG"), "image/jpeg", "blurred.jpg"
 
 
+def _variant_image(seed):
+    # Not a named fixture - a family of images that differ by seed, used
+    # only to search for specific analyzer outcomes (see the four fixtures
+    # below). Kept private: nothing should call this with an arbitrary
+    # seed at runtime: any image that mattered got frozen once we found it.
+    color = (seed % 256, (seed * 7) % 256, (seed * 13) % 256)
+    img = Image.new("RGB", (200, 200), color=color)
+    return _save(img, "JPEG"), "image/jpeg", f"variant_{seed}.jpg"
+
+
+def _zero_detection_image():
+    # variant seed 1: found offline (one-time search script) to produce
+    # vehicle_detection total_count=0. Frozen so the test is one
+    # deterministic request, not a retry loop against random images.
+    return _variant_image(1)
+
+
+def _multi_detection_image():
+    # variant seed 4: produces vehicle_detection total_count=6 (verified >3)
+    return _variant_image(4)
+
+
+def _unclassified_image():
+    # variant seed 14: produces classification category="unclassified"
+    return _variant_image(14)
+
+
+def _low_confidence_image():
+    # variant seed 16: produces classification confidence=0.56 (verified <0.6)
+    return _variant_image(16)
+
+
 _BUILDERS = {
     "valid_jpeg": _valid_jpeg,
     "valid_png": _valid_png,
@@ -90,6 +122,10 @@ _BUILDERS = {
     "truncated_jpeg_passes_verify": _truncated_jpeg_passes_verify,
     "dark_image": _dark_image,
     "blurred_image": _blurred_image,
+    "zero_detection_image": _zero_detection_image,
+    "multi_detection_image": _multi_detection_image,
+    "unclassified_image": _unclassified_image,
+    "low_confidence_image": _low_confidence_image,
 }
 
 

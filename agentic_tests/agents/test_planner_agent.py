@@ -304,7 +304,8 @@ class TestPlannerAgent:
                 category="dashboard",
                 priority="high",
                 steps=["Note total_analyses", "Run one analysis", "Check total_analyses increased by 1"],
-                action={"type": "api", "flow": "count_increases_after_analysis"},
+                action={"type": "api", "flow": "count_increases_after_analysis",
+                        "expect": {"json_field_values": {"count_increased_by_one": True}}},
             ),
             self._new_case(
                 name="Failed analysis is visible on the dashboard",
@@ -319,7 +320,8 @@ class TestPlannerAgent:
                 category="dashboard",
                 priority="medium",
                 steps=["Run a few analyses", "Compare average_processing_time_ms to a manual average"],
-                action={"type": "api", "flow": "average_processing_time_matches"},
+                action={"type": "api", "flow": "average_processing_time_matches",
+                        "expect": {"json_field_values": {"averages_match": True}}},
             ),
             self._new_case(
                 name="Dashboard supports filtering and sorting",
@@ -338,15 +340,28 @@ class TestPlannerAgent:
                 name="Vehicle detection with no relevant objects",
                 category="ai_algorithm",
                 priority="medium",
-                steps=["Run vehicle_detection until a result with total_count=0 occurs"],
-                action={"type": "api", "flow": "vehicle_detection_zero_count"},
+                steps=["Submit an image known to produce zero detections"],
+                action={
+                    "type": "api", "method": "POST", "path": "/api/analysis",
+                    # Frozen fixture (see fixtures.py) is guaranteed to produce zero detections
+                    # The mocks are deterministic, so a fixed image gives a
+                    # fixed, known answer every time.
+                    "fixture": "zero_detection_image",
+                    "form": {**DEFAULT_FORM, "analysis_type": "vehicle_detection", "image_source": "drone"},
+                    "expect": {"json_field_values": {"detections_count": 0}},
+                },
             ),
             self._new_case(
                 name="Vehicle detection with several vehicles",
                 category="ai_algorithm",
                 priority="medium",
-                steps=["Run vehicle_detection until a result with total_count>3 occurs"],
-                action={"type": "api", "flow": "vehicle_detection_several"},
+                steps=["Submit an image known to produce more than 3 detections"],
+                action={
+                    "type": "api", "method": "POST", "path": "/api/analysis",
+                    "fixture": "multi_detection_image",  # verified: total_count=6
+                    "form": {**DEFAULT_FORM, "analysis_type": "vehicle_detection", "image_source": "drone"},
+                    "expect": {"json_field_values": {"detections_count": 6}},
+                },
             ),
             self._new_case(
                 name="Image quality flags a dark or blurred image",
@@ -364,21 +379,32 @@ class TestPlannerAgent:
                 name="Classification returns 'unclassified' for an unsupported scene",
                 category="ai_algorithm",
                 priority="medium",
-                steps=["Run classification until a result with category=unclassified occurs"],
-                action={"type": "api", "flow": "classification_unclassified"},
+                steps=["Submit an image known to classify as unclassified"],
+                action={
+                    "type": "api", "method": "POST", "path": "/api/analysis",
+                    "fixture": "unclassified_image",
+                    "form": {**DEFAULT_FORM, "analysis_type": "classification", "image_source": "drone"},
+                    "expect": {"json_field_values": {"primary_category": "unclassified"}},
+                },
             ),
             self._new_case(
                 name="Classification returns a low-confidence result",
                 category="ai_algorithm",
                 priority="medium",
-                steps=["Run classification until a result with confidence<0.6 occurs"],
-                action={"type": "api", "flow": "classification_low_confidence"},
+                steps=["Submit an image known to produce confidence below 0.6"],
+                action={
+                    "type": "api", "method": "POST", "path": "/api/analysis",
+                    "fixture": "low_confidence_image",  # verified: confidence=0.56
+                    "form": {**DEFAULT_FORM, "analysis_type": "classification", "image_source": "drone"},
+                    "expect": {"json_field_values": {"confidence_score": 0.56}},
+                },
             ),
             self._new_case(
                 name="Same image submitted twice gives the same result",
                 category="ai_algorithm",
                 priority="high",
                 steps=["Submit the same image twice with the same analysis_type", "Compare the two results"],
-                action={"type": "api", "flow": "determinism_check"},
+                action={"type": "api", "flow": "determinism_check",
+                        "expect": {"json_field_values": {"results_match": True}}},
             ),
         ]
