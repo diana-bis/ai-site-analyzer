@@ -53,6 +53,26 @@ def _dark_image():
     return _save(img, "JPEG"), "image/jpeg", "dark.jpg"
 
 
+def _truncated_jpeg_passes_verify():
+    """A JPEG whose header is intact but whose pixel data is cut short.
+
+    This fixture exploits a real, measured gap between two levels of checking:
+
+      Image.verify()  - used by upload validation. Checks structure only.
+      Image.open()    - used by the image_quality analyzer. Decodes pixels.
+
+    A file truncated to 90% passes the first and raises OSError on the
+    second, so it is stored successfully and then fails during analysis -
+    which is exactly the "analyzer failure" path we need to test.
+
+    IMPORTANT: only image_quality fully decodes the image. classification
+    and vehicle_detection hash the raw bytes and succeed on this file, so
+    any test using this fixture must set analysis_type="image_quality".
+    """
+    real_bytes, _, _ = _valid_jpeg()
+    return real_bytes[: int(len(real_bytes) * 0.9)], "image/jpeg", "truncated.jpg"
+
+
 def _blurred_image():
     img = Image.new("RGB", (200, 200), color=(200, 200, 200))
     img.paste(Image.new("RGB", (20, 20), color=(0, 0, 0)), (90, 90))
@@ -67,6 +87,7 @@ _BUILDERS = {
     "oversized_file": _oversized_file,
     "undersized_file": _undersized_file,
     "text_file_renamed_jpg": _text_file_renamed_jpg,
+    "truncated_jpeg_passes_verify": _truncated_jpeg_passes_verify,
     "dark_image": _dark_image,
     "blurred_image": _blurred_image,
 }

@@ -627,20 +627,55 @@
       "The application is running"
     ],
     "steps": [
-      "Trigger an analyzer failure",
+      "Submit an image that passes upload validation but fails full decode",
       "Confirm the analysis is saved with status=failed"
     ],
     "action": {
       "type": "api",
-      "flow": "simulate_analyzer_failure",
+      "method": "POST",
+      "path": "/api/analysis",
+      "fixture": "truncated_jpeg_passes_verify",
+      "form": {
+        "site_name": "Test Site",
+        "capture_datetime": "2026-01-01T00:00:00",
+        "analysis_type": "image_quality",
+        "image_source": "drone"
+      },
       "expect": {
-        "status": "failed",
-        "error_message_present": true
+        "status": 201,
+        "json_field_values": {
+          "status": "failed"
+        },
+        "json_fields": [
+          "error_message"
+        ]
       }
     }
   },
   {
     "id": "TC-025",
+    "name": "API handles a missing image file gracefully",
+    "category": "api",
+    "type": "api",
+    "priority": "medium",
+    "preconditions": [
+      "The application is running"
+    ],
+    "steps": [
+      "Run a valid analysis",
+      "Delete its stored image file from disk",
+      "Request the image via GET /api/analysis/{id}/image"
+    ],
+    "action": {
+      "type": "api",
+      "flow": "missing_image_file_handling",
+      "expect": {
+        "status": 404
+      }
+    }
+  },
+  {
+    "id": "TC-026",
     "name": "Dashboard analysis count updates after a new analysis",
     "category": "dashboard",
     "type": "api",
@@ -659,7 +694,7 @@
     }
   },
   {
-    "id": "TC-026",
+    "id": "TC-027",
     "name": "Failed analysis is visible on the dashboard",
     "category": "dashboard",
     "type": "api",
@@ -673,11 +708,16 @@
     ],
     "action": {
       "type": "api",
-      "flow": "failed_analysis_visible"
+      "flow": "failed_analysis_visible",
+      "expect": {
+        "json_field_values": {
+          "analysis_visible_in_failed_list": true
+        }
+      }
     }
   },
   {
-    "id": "TC-027",
+    "id": "TC-028",
     "name": "Average processing time is calculated correctly",
     "category": "dashboard",
     "type": "api",
@@ -695,7 +735,7 @@
     }
   },
   {
-    "id": "TC-028",
+    "id": "TC-029",
     "name": "Dashboard supports filtering and sorting",
     "category": "dashboard",
     "type": "ui",
@@ -713,7 +753,7 @@
     }
   },
   {
-    "id": "TC-029",
+    "id": "TC-030",
     "name": "Vehicle detection with no relevant objects",
     "category": "ai_algorithm",
     "type": "api",
@@ -730,7 +770,7 @@
     }
   },
   {
-    "id": "TC-030",
+    "id": "TC-031",
     "name": "Vehicle detection with several vehicles",
     "category": "ai_algorithm",
     "type": "api",
@@ -747,7 +787,7 @@
     }
   },
   {
-    "id": "TC-031",
+    "id": "TC-032",
     "name": "Image quality flags a dark or blurred image",
     "category": "ai_algorithm",
     "type": "api",
@@ -777,7 +817,7 @@
     }
   },
   {
-    "id": "TC-032",
+    "id": "TC-033",
     "name": "Classification returns 'unclassified' for an unsupported scene",
     "category": "ai_algorithm",
     "type": "api",
@@ -794,7 +834,7 @@
     }
   },
   {
-    "id": "TC-033",
+    "id": "TC-034",
     "name": "Classification returns a low-confidence result",
     "category": "ai_algorithm",
     "type": "api",
@@ -811,7 +851,7 @@
     }
   },
   {
-    "id": "TC-034",
+    "id": "TC-035",
     "name": "Same image submitted twice gives the same result",
     "category": "ai_algorithm",
     "type": "api",

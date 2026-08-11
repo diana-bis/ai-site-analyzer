@@ -247,9 +247,10 @@ class TestPlannerAgent:
             for entry in API_CONTRACT
         ]
 
-        # Not derivable from static config - needs a live simulated failure.
-        # How to actually simulate these is unresolved - flagged for Step 9.
         cases += [
+            # Timeout is client-side behavior - the server doesn't "return"
+            # a timeout, so there's nothing here to genuinely test without
+            # a deliberately slow endpoint. Left blocked; 
             self._new_case(
                 name="Validate timeout behavior",
                 category="api",
@@ -261,9 +262,35 @@ class TestPlannerAgent:
                 name="Validate algorithm-service failure handling",
                 category="api",
                 priority="medium",
-                steps=["Trigger an analyzer failure", "Confirm the analysis is saved with status=failed"],
-                action={"type": "api", "flow": "simulate_analyzer_failure",
-                        "expect": {"status": "failed", "error_message_present": True}},
+                steps=[
+                    "Submit an image that passes upload validation but fails full decode",
+                    "Confirm the analysis is saved with status=failed",
+                ],
+                action={
+                    "type": "api", "method": "POST", "path": "/api/analysis",
+                    "fixture": "truncated_jpeg_passes_verify",
+                    # Must be image_quality: it's the only analyzer that
+                    # fully decodes the image. classification/vehicle_detection
+                    # only read raw bytes to hash them, so they'd succeed on
+                    # this file and silently test nothing.
+                    "form": {**DEFAULT_FORM, "analysis_type": "image_quality", "image_source": "drone"},
+                    "expect": {
+                        "status": 201,
+                        "json_field_values": {"status": "failed"},
+                        "json_fields": ["error_message"],
+                    },
+                },
+            ),
+            self._new_case(
+                name="API handles a missing image file gracefully",
+                category="api",
+                priority="medium",
+                steps=[
+                    "Run a valid analysis",
+                    "Delete its stored image file from disk",
+                    "Request the image via GET /api/analysis/{id}/image",
+                ],
+                action={"type": "api", "flow": "missing_image_file_handling", "expect": {"status": 404}},
             ),
         ]
         return cases
@@ -284,7 +311,8 @@ class TestPlannerAgent:
                 category="dashboard",
                 priority="high",
                 steps=["Cause an analysis to fail", "Check it appears in failed_analyses"],
-                action={"type": "api", "flow": "failed_analysis_visible"},
+                action={"type": "api", "flow": "failed_analysis_visible",
+                        "expect": {"json_field_values": {"analysis_visible_in_failed_list": True}}},
             ),
             self._new_case(
                 name="Average processing time is calculated correctly",
