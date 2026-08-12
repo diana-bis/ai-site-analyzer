@@ -127,21 +127,24 @@ class TestPlannerAgent:
                 category="functional",
                 priority="high",
                 steps=["Run a valid analysis", "Check that the result card appears with data"],
-                action={"type": "ui", "flow": "display_result"},
+                action={"type": "ui", "flow": "display_result",
+                        "expect": {"json_field_values": {"result_visible": True}}},
             ),
             self._new_case(
                 name="Open the dashboard",
                 category="functional",
                 priority="medium",
                 steps=["Click the Dashboard link in the nav bar"],
-                action={"type": "ui", "flow": "open_dashboard"},
+                action={"type": "ui", "flow": "open_dashboard",
+                        "expect": {"json_field_values": {"page_loaded": True}}},
             ),
             self._new_case(
                 name="Review a previous analysis from the dashboard",
                 category="functional",
                 priority="medium",
                 steps=["Open the dashboard", "Click a row in the recent analyses table"],
-                action={"type": "ui", "flow": "review_previous_analysis"},
+                action={"type": "ui", "flow": "review_previous_analysis",
+                        "expect": {"json_field_values": {"navigated_to_details": True}}},
             ),
         ]
         return cases
@@ -328,7 +331,11 @@ class TestPlannerAgent:
                 category="dashboard",
                 priority="medium",
                 steps=["Open the dashboard", "Try to filter or sort the analyses table"],
-                action={"type": "ui", "flow": "dashboard_filters"},
+                # Expects True (filters should exist) - the dashboard has no
+                # filter/sort controls today, so this is expected to
+                # genuinely fail, not pass. Not staged: a real, current gap.
+                action={"type": "ui", "flow": "dashboard_filters",
+                        "expect": {"json_field_values": {"filter_controls_present": True}}},
             ),
         ]
 

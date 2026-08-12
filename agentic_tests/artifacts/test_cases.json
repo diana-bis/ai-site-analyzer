@@ -229,7 +229,12 @@
     ],
     "action": {
       "type": "ui",
-      "flow": "display_result"
+      "flow": "display_result",
+      "expect": {
+        "json_field_values": {
+          "result_visible": true
+        }
+      }
     }
   },
   {
@@ -246,7 +251,12 @@
     ],
     "action": {
       "type": "ui",
-      "flow": "open_dashboard"
+      "flow": "open_dashboard",
+      "expect": {
+        "json_field_values": {
+          "page_loaded": true
+        }
+      }
     }
   },
   {
@@ -264,7 +274,12 @@
     ],
     "action": {
       "type": "ui",
-      "flow": "review_previous_analysis"
+      "flow": "review_previous_analysis",
+      "expect": {
+        "json_field_values": {
+          "navigated_to_details": true
+        }
+      }
     }
   },
   {
@@ -759,7 +774,12 @@
     ],
     "action": {
       "type": "ui",
-      "flow": "dashboard_filters"
+      "flow": "dashboard_filters",
+      "expect": {
+        "json_field_values": {
+          "filter_controls_present": true
+        }
+      }
     }
   },
   {

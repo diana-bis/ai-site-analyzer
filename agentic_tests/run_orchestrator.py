@@ -15,13 +15,18 @@ from agents.test_planner_agent import TestPlannerAgent
 from agents.validation_agent import ValidationAgent
 from orchestrator import Orchestrator
 from runners.api_runner import ApiRunner
+from runners.ui_runner import UiRunner
 
 if __name__ == "__main__":
     base_url = os.environ.get("BASE_URL", "http://localhost:8000")
+    frontend_url = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 
     orchestrator = Orchestrator(
         planner=TestPlannerAgent(),
-        execution_agent=ExecutionAgent(api_runner=ApiRunner(base_url)),
+        execution_agent=ExecutionAgent(
+            api_runner=ApiRunner(base_url),
+            ui_runner=UiRunner(frontend_url, base_url),
+        ),
         validation_agent=ValidationAgent(),
     )
     results = orchestrator.run()
