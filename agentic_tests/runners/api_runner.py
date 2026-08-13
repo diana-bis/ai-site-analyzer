@@ -6,6 +6,8 @@ code directly, only talks to it over the network, same as any real client.
 Test cases that need more than one request live in api_flows.py
 """
 
+import json
+
 import requests
 
 from fixtures import build_fixture
@@ -13,6 +15,26 @@ from runners import api_flows
 
 # Used for "should return 404" cases - no analysis will ever have this id.
 PLACEHOLDER_ANALYSIS_ID = 999999
+
+# Sane cap so a huge JSON body doesn't bloat the report.
+MAX_LOG_BODY_LENGTH = 2000
+
+
+def build_evidence(method, path, form, response_status, response_body):
+    """Compact, human-readable log entry for one HTTP request/response -
+    what was sent, what came back. Shared by _run_direct and the flows in
+    api_flows.py, so every "failed without raising" case leaves the same
+    kind of evidence behind (spec section 12: "logs where relevant"), not
+    just genuine crashes."""
+    body_text = json.dumps(response_body) if response_body is not None else "null"
+    if len(body_text) > MAX_LOG_BODY_LENGTH:
+        body_text = body_text[:MAX_LOG_BODY_LENGTH] + "... (truncated)"
+
+    request_text = f"{method} {path}"
+    if form:
+        request_text += f" form={form}"
+
+    return f"Request: {request_text}\nResponse status: {response_status}\nResponse body: {body_text}"
 
 
 class ApiRunner:
@@ -37,7 +59,7 @@ class ApiRunner:
             raise NotImplementedError(f"API flow '{action['flow']}' is not implemented yet")
         return handler(self)
 
-    # Send one HTTP request and return its status code and response body
+    # Send one HTTP request and return its status code, body, and evidence
     def _run_direct(self, action):
         path = self._resolve_path(action)
         url = f"{self.base_url}{path}"
@@ -59,7 +81,13 @@ class ApiRunner:
         except ValueError:
             body = None
 
-        return {"status": response.status_code, "body": body}
+        return {
+            "status": response.status_code,
+            "body": body,
+            "logs": build_evidence(
+                action["method"], path, action.get("form"), response.status_code, body
+            ),
+        }
 
     # Replace {id} in the URL with either a real analysis ID or a fake one for 404 tests
     def _resolve_path(self, action):

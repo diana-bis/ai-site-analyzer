@@ -24,5 +24,5 @@ if __name__ == "__main__":
 
     flow_name = sys.argv[1]
     runner = UiRunner("http://localhost:5173", "http://localhost:8000")
-    result = runner.run({"type": "ui", "flow": flow_name})
+    result = runner.run("DEBUG", {"type": "ui", "flow": flow_name})
     print("Result:", result)

@@ -18,6 +18,7 @@ class ExecutionAgent:
         if action["type"] == "ui":
             if self.ui_runner is None:
                 raise NotImplementedError("UI runner is not implemented yet")
-            return self.ui_runner.run(action)
+            # test_case["id"] is needed for screenshot filenames
+            return self.ui_runner.run(test_case["id"], action)
 
         raise ValueError(f"Unknown action type: {action['type']}")

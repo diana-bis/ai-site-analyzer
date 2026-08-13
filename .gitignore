@@ -15,4 +15,6 @@ frontend/dist/
 backend/data/
 agentic_tests/artifacts/*
 !agentic_tests/artifacts/test_cases.json
+!agentic_tests/artifacts/report.json
+!agentic_tests/artifacts/report.html
 *.log
