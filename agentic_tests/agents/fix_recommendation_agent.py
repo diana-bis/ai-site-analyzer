@@ -18,7 +18,7 @@ class FixRecommendationAgent:
             "cause": self.llm_client.complete(
                 self._build_cause_prompt(test_case, execution_result, validation_result)
             ),
-            "recommendation": self._suggest_recommendation(component, validation_result),
+            "recommendation": self._suggest_recommendation(test_case, component, validation_result),
             "regression_test": self._suggest_regression_test(test_case),
         }
 
@@ -47,9 +47,37 @@ class FixRecommendationAgent:
             return "Backend - API"
         return "Unknown component"
 
-    def _suggest_recommendation(self, component, validation_result):
-        deviations = ", ".join(validation_result.get("deviations", [])) or "the reported deviation"
-        return f"Investigate {component} to resolve: {deviations}."
+    # Template by deviation shape, not by echoing the error - "investigate
+    # X to resolve: <the error>" is circular, it repeats what's already
+    # shown as expected_result/actual_result instead of pointing anywhere.
+    def _suggest_recommendation(self, test_case, component, validation_result):
+        deviations = validation_result.get("deviations", [])
+        if not deviations:
+            return f"Investigate {component}."
+
+        shapes = {self._deviation_shape(d) for d in deviations}
+
+        if "status" in shapes:
+            return (
+                f"Check the route handler in {component} - it's returning "
+                f"the wrong HTTP status for what this contract requires."
+            )
+        if "missing_field" in shapes:
+            return (
+                f"Check the response schema in {component} - a field "
+                f"required by the contract is missing from the response."
+            )
+
+        target = "UI element or flow step" if test_case["type"] == "ui" else "response field"
+        return f"Check the {target} in {component} that produced the unexpected value."
+
+    @staticmethod
+    def _deviation_shape(deviation):
+        if deviation.startswith("expected status"):
+            return "status"
+        if deviation.startswith("missing response fields"):
+            return "missing_field"
+        return "value_mismatch"
 
     def _suggest_regression_test(self, test_case):
         suggestions = {

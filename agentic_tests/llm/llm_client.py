@@ -26,7 +26,16 @@ class MockLLMClient(LLMClient):
         # Select one of the templates based on the seed
         template = self._TEMPLATES[seed % len(self._TEMPLATES)]
 
-        # Use the last line of the prompt as the response excerpt
-        excerpt = prompt.strip().splitlines()[-1][:200]
-        
-        return template.format(excerpt=excerpt)
+        return template.format(excerpt=self._excerpt(prompt))
+
+    def _excerpt(self, prompt: str) -> str:
+        # Drop whichever trailing part isn't failure data - the raw
+        # response body (cause prompts) or the instruction sentence
+        # (narrative prompts) - so the excerpt never echoes a raw dict or
+        # gets truncated mid-word/mid-JSON.
+        content = prompt.split(". Actual result:")[0]
+        content = content.split("Summarize what these failures mean together")[0].strip()
+
+        if len(content) <= 200:
+            return content
+        return content[:200].rsplit(" ", 1)[0] + "..."
