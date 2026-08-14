@@ -11,8 +11,8 @@
       "status": "passed",
       "expected_result": "HTTP status 200; total_analyses=0",
       "actual_result": "HTTP status 200; total_analyses=0",
-      "timestamp": "2026-08-13T16:15:02.971997+00:00",
-      "duration_ms": 2056,
+      "timestamp": "2026-08-14T10:55:56.383690+00:00",
+      "duration_ms": 147,
       "error_message": null,
       "screenshot": null,
       "logs": "Request: GET /api/dashboard\nResponse status: 200\nResponse body: {\"total_analyses\": 0, \"total_images\": 0, \"total_detections\": 0, \"by_analysis_type\": {}, \"by_category\": {}, \"recent_analyses\": [], \"failed_analyses\": [], \"average_processing_time_ms\": null, \"average_confidence_score\": null}"
@@ -23,11 +23,11 @@
       "status": "passed",
       "expected_result": "HTTP status 201; response includes id, status, result",
       "actual_result": "HTTP status 201; all expected fields present",
-      "timestamp": "2026-08-13T16:15:05.028562+00:00",
-      "duration_ms": 2159,
+      "timestamp": "2026-08-14T10:55:56.530781+00:00",
+      "duration_ms": 345,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 1, \"created_at\": \"2026-08-13T16:15:07\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 6}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 6}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 1, \"created_at\": \"2026-08-14T10:55:56\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 39}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 39}"
     },
     {
       "test_case_id": "TC-003",
@@ -35,11 +35,11 @@
       "status": "passed",
       "expected_result": "HTTP status 201; response includes id, status, result",
       "actual_result": "HTTP status 201; all expected fields present",
-      "timestamp": "2026-08-13T16:15:07.187841+00:00",
-      "duration_ms": 2079,
+      "timestamp": "2026-08-14T10:55:56.876298+00:00",
+      "duration_ms": 56,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'vehicle_detection', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 2, \"created_at\": \"2026-08-13T16:15:09\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"vehicle_detection\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"total_count\": 1, \"count_by_type\": {\"private_car\": 1, \"truck\": 0, \"bus\": 0, \"motorcycle\": 0, \"other\": 0}, \"detections\": [{\"vehicle_type\": \"private_car\", \"confidence\": 0.96, \"bounding_box\": {\"x\": 0.409, \"y\": 0.321, \"width\": 0.215, \"height\": 0.323}}], \"processing_time_ms\": 4}, \"primary_category\": null, \"confidence_score\": null, \"detections_count\": 1, \"processing_time_ms\": 4}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'vehicle_detection', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 2, \"created_at\": \"2026-08-14T10:55:56\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"vehicle_detection\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"total_count\": 1, \"count_by_type\": {\"private_car\": 1, \"truck\": 0, \"bus\": 0, \"motorcycle\": 0, \"other\": 0}, \"detections\": [{\"vehicle_type\": \"private_car\", \"confidence\": 0.96, \"bounding_box\": {\"x\": 0.409, \"y\": 0.321, \"width\": 0.215, \"height\": 0.323}}], \"processing_time_ms\": 4}, \"primary_category\": null, \"confidence_score\": null, \"detections_count\": 1, \"processing_time_ms\": 4}"
     },
     {
       "test_case_id": "TC-004",
@@ -47,11 +47,11 @@
       "status": "passed",
       "expected_result": "HTTP status 201; response includes id, status, result",
       "actual_result": "HTTP status 201; all expected fields present",
-      "timestamp": "2026-08-13T16:15:09.267595+00:00",
-      "duration_ms": 2052,
+      "timestamp": "2026-08-14T10:55:56.933017+00:00",
+      "duration_ms": 146,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'image_quality', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 3, \"created_at\": \"2026-08-13T16:15:11\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"image_quality\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"is_blurry\": true, \"blur_score\": 0.0, \"is_dark\": false, \"brightness_score\": 128.0, \"quality\": \"poor\", \"processing_time_ms\": 6}, \"primary_category\": \"poor\", \"confidence_score\": null, \"detections_count\": null, \"processing_time_ms\": 6}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'image_quality', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 3, \"created_at\": \"2026-08-14T10:55:57\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"image_quality\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"is_blurry\": true, \"blur_score\": 0.0, \"is_dark\": false, \"brightness_score\": 128.0, \"quality\": \"poor\", \"processing_time_ms\": 54}, \"primary_category\": \"poor\", \"confidence_score\": null, \"detections_count\": null, \"processing_time_ms\": 54}"
     },
     {
       "test_case_id": "TC-005",
@@ -59,11 +59,11 @@
       "status": "passed",
       "expected_result": "HTTP status 201",
       "actual_result": "HTTP status 201",
-      "timestamp": "2026-08-13T16:15:11.319755+00:00",
-      "duration_ms": 2064,
+      "timestamp": "2026-08-14T10:55:57.079726+00:00",
+      "duration_ms": 108,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'static_camera'}\nResponse status: 201\nResponse body: {\"id\": 4, \"created_at\": \"2026-08-13T16:15:13\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"static_camera\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 4}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 4}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'static_camera'}\nResponse status: 201\nResponse body: {\"id\": 4, \"created_at\": \"2026-08-14T10:55:57\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"static_camera\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 11}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 11}"
     },
     {
       "test_case_id": "TC-006",
@@ -71,11 +71,11 @@
       "status": "passed",
       "expected_result": "HTTP status 201",
       "actual_result": "HTTP status 201",
-      "timestamp": "2026-08-13T16:15:13.384279+00:00",
-      "duration_ms": 2059,
+      "timestamp": "2026-08-14T10:55:57.187985+00:00",
+      "duration_ms": 99,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 5, \"created_at\": \"2026-08-13T16:15:15\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 4}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 4}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 5, \"created_at\": \"2026-08-14T10:55:57\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 11}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 11}"
     },
     {
       "test_case_id": "TC-007",
@@ -83,11 +83,11 @@
       "status": "passed",
       "expected_result": "HTTP status 201",
       "actual_result": "HTTP status 201",
-      "timestamp": "2026-08-13T16:15:15.443867+00:00",
-      "duration_ms": 2048,
+      "timestamp": "2026-08-14T10:55:57.287340+00:00",
+      "duration_ms": 73,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'manual_upload'}\nResponse status: 201\nResponse body: {\"id\": 6, \"created_at\": \"2026-08-13T16:15:17\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"manual_upload\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 3}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 3}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'manual_upload'}\nResponse status: 201\nResponse body: {\"id\": 6, \"created_at\": \"2026-08-14T10:55:57\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"manual_upload\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 10}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 10}"
     },
     {
       "test_case_id": "TC-008",
@@ -95,8 +95,8 @@
       "status": "passed",
       "expected_result": "result_visible=True",
       "actual_result": "result_visible=True",
-      "timestamp": "2026-08-13T16:15:17.492550+00:00",
-      "duration_ms": 3763,
+      "timestamp": "2026-08-14T10:55:57.360675+00:00",
+      "duration_ms": 21971,
       "error_message": null,
       "screenshot": null,
       "logs": null
@@ -107,8 +107,8 @@
       "status": "passed",
       "expected_result": "page_loaded=True",
       "actual_result": "page_loaded=True",
-      "timestamp": "2026-08-13T16:15:21.257343+00:00",
-      "duration_ms": 4376,
+      "timestamp": "2026-08-14T10:56:19.335127+00:00",
+      "duration_ms": 2473,
       "error_message": null,
       "screenshot": null,
       "logs": null
@@ -119,8 +119,8 @@
       "status": "passed",
       "expected_result": "navigated_to_details=True",
       "actual_result": "navigated_to_details=True",
-      "timestamp": "2026-08-13T16:15:25.634628+00:00",
-      "duration_ms": 4338,
+      "timestamp": "2026-08-14T10:56:21.809168+00:00",
+      "duration_ms": 2472,
       "error_message": null,
       "screenshot": null,
       "logs": null
@@ -131,11 +131,11 @@
       "status": "passed",
       "expected_result": "HTTP status 400",
       "actual_result": "HTTP status 400",
-      "timestamp": "2026-08-13T16:15:29.973657+00:00",
-      "duration_ms": 2114,
+      "timestamp": "2026-08-14T10:56:24.281905+00:00",
+      "duration_ms": 110,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 400\nResponse body: {\"detail\": \"File could not be read as a valid image: cannot identify image file <_io.BytesIO object at 0x0000022FFF9F5170>\"}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 400\nResponse body: {\"detail\": \"File could not be read as a valid image: cannot identify image file <_io.BytesIO object at 0x7f924a25b3d0>\"}"
     },
     {
       "test_case_id": "TC-012",
@@ -143,8 +143,8 @@
       "status": "passed",
       "expected_result": "HTTP status 400",
       "actual_result": "HTTP status 400",
-      "timestamp": "2026-08-13T16:15:32.088488+00:00",
-      "duration_ms": 2036,
+      "timestamp": "2026-08-14T10:56:24.392882+00:00",
+      "duration_ms": 12,
       "error_message": null,
       "screenshot": null,
       "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 400\nResponse body: {\"detail\": \"File could not be read as a valid image: Truncated File Read\"}"
@@ -155,8 +155,8 @@
       "status": "passed",
       "expected_result": "HTTP status 400",
       "actual_result": "HTTP status 400",
-      "timestamp": "2026-08-13T16:15:34.124655+00:00",
-      "duration_ms": 2168,
+      "timestamp": "2026-08-14T10:56:24.405208+00:00",
+      "duration_ms": 80,
       "error_message": null,
       "screenshot": null,
       "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 400\nResponse body: {\"detail\": \"File too large: 10485761 bytes (max 10485760).\"}"
@@ -167,8 +167,8 @@
       "status": "passed",
       "expected_result": "HTTP status 422",
       "actual_result": "HTTP status 422",
-      "timestamp": "2026-08-13T16:15:36.293636+00:00",
-      "duration_ms": 2031,
+      "timestamp": "2026-08-14T10:56:24.485582+00:00",
+      "duration_ms": 23,
       "error_message": null,
       "screenshot": null,
       "logs": "Request: POST /api/analysis form={'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 422\nResponse body: {\"detail\": [{\"type\": \"missing\", \"loc\": [\"body\", \"site_name\"], \"msg\": \"Field required\", \"input\": null}, {\"type\": \"missing\", \"loc\": [\"body\", \"capture_datetime\"], \"msg\": \"Field required\", \"input\": null}]}"
@@ -179,8 +179,8 @@
       "status": "passed",
       "expected_result": "HTTP status 422",
       "actual_result": "HTTP status 422",
-      "timestamp": "2026-08-13T16:15:38.324951+00:00",
-      "duration_ms": 2023,
+      "timestamp": "2026-08-14T10:56:24.509014+00:00",
+      "duration_ms": 23,
       "error_message": null,
       "screenshot": null,
       "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 422\nResponse body: {\"detail\": [{\"type\": \"missing\", \"loc\": [\"body\", \"file\"], \"msg\": \"Field required\", \"input\": null}]}"
@@ -191,8 +191,8 @@
       "status": "passed",
       "expected_result": "HTTP status 422",
       "actual_result": "HTTP status 422",
-      "timestamp": "2026-08-13T16:15:40.348063+00:00",
-      "duration_ms": 2039,
+      "timestamp": "2026-08-14T10:56:24.532563+00:00",
+      "duration_ms": 21,
       "error_message": null,
       "screenshot": null,
       "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'spaceship', 'image_source': 'drone'}\nResponse status: 422\nResponse body: {\"detail\": [{\"type\": \"literal_error\", \"loc\": [\"body\", \"analysis_type\"], \"msg\": \"Input should be 'classification', 'vehicle_detection' or 'image_quality'\", \"input\": \"spaceship\", \"ctx\": {\"expected\": \"'classification', 'vehicle_detection' or 'image_quality'\"}}]}"
@@ -203,8 +203,8 @@
       "status": "passed",
       "expected_result": "HTTP status 200; response includes status",
       "actual_result": "HTTP status 200; all expected fields present",
-      "timestamp": "2026-08-13T16:15:42.387580+00:00",
-      "duration_ms": 2021,
+      "timestamp": "2026-08-14T10:56:24.554547+00:00",
+      "duration_ms": 17,
       "error_message": null,
       "screenshot": null,
       "logs": "Request: GET /api/health\nResponse status: 200\nResponse body: {\"status\": \"ok\"}"
@@ -215,11 +215,11 @@
       "status": "passed",
       "expected_result": "HTTP status 201; response includes id, status, result",
       "actual_result": "HTTP status 201; all expected fields present",
-      "timestamp": "2026-08-13T16:15:44.409561+00:00",
-      "duration_ms": 2072,
+      "timestamp": "2026-08-14T10:56:24.572108+00:00",
+      "duration_ms": 85,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 10, \"created_at\": \"2026-08-13T16:15:46\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 3}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 3}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 10, \"created_at\": \"2026-08-14T10:56:24\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 12}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 12}"
     },
     {
       "test_case_id": "TC-019",
@@ -227,11 +227,11 @@
       "status": "passed",
       "expected_result": "HTTP status 200",
       "actual_result": "HTTP status 200",
-      "timestamp": "2026-08-13T16:15:46.482569+00:00",
-      "duration_ms": 2024,
+      "timestamp": "2026-08-14T10:56:24.657393+00:00",
+      "duration_ms": 41,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: GET /api/analysis\nResponse status: 200\nResponse body: [{\"id\": 10, \"created_at\": \"2026-08-13T16:15:46\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 3}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 3}, {\"id\": 9, \"created_at\": \"2026-08-13T16:15:28\", \"site_name\": \"UI Seed\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 7}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 7}, {\"id\": 8, \"created_at\": \"2026-08-13T16:15:24\", \"site_name\": \"UI Seed\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 5}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 5}, {\"id\": 7, \"created_at\": \"2026-08-13T16:15:20\", \"site_name\": \"UI Test Site\", \"capture_datetime\"... (truncated)"
+      "logs": "Request: GET /api/analysis\nResponse status: 200\nResponse body: [{\"id\": 10, \"created_at\": \"2026-08-14T10:56:24\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 12}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 12}, {\"id\": 9, \"created_at\": \"2026-08-14T10:56:22\", \"site_name\": \"UI Seed\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 5}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 5}, {\"id\": 8, \"created_at\": \"2026-08-14T10:56:20\", \"site_name\": \"UI Seed\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 7}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 7}, {\"id\": 7, \"created_at\": \"2026-08-14T10:56:18\", \"site_name\": \"UI Test Site\", \"capture_datetim... (truncated)"
     },
     {
       "test_case_id": "TC-020",
@@ -239,11 +239,11 @@
       "status": "passed",
       "expected_result": "HTTP status 200; response includes id, status",
       "actual_result": "HTTP status 200; all expected fields present",
-      "timestamp": "2026-08-13T16:15:48.507090+00:00",
-      "duration_ms": 4081,
+      "timestamp": "2026-08-14T10:56:24.698662+00:00",
+      "duration_ms": 119,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: GET /api/analysis/11\nResponse status: 200\nResponse body: {\"id\": 11, \"created_at\": \"2026-08-13T16:15:50\", \"site_name\": \"Setup Fixture\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 2}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 2}"
+      "logs": "Request: GET /api/analysis/11\nResponse status: 200\nResponse body: {\"id\": 11, \"created_at\": \"2026-08-14T10:56:24\", \"site_name\": \"Setup Fixture\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 8}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 8}"
     },
     {
       "test_case_id": "TC-021",
@@ -251,8 +251,8 @@
       "status": "passed",
       "expected_result": "HTTP status 404; response includes detail",
       "actual_result": "HTTP status 404; all expected fields present",
-      "timestamp": "2026-08-13T16:15:52.588160+00:00",
-      "duration_ms": 2018,
+      "timestamp": "2026-08-14T10:56:24.818577+00:00",
+      "duration_ms": 21,
       "error_message": null,
       "screenshot": null,
       "logs": "Request: GET /api/analysis/999999\nResponse status: 404\nResponse body: {\"detail\": \"Analysis 999999 not found.\"}"
@@ -263,11 +263,11 @@
       "status": "passed",
       "expected_result": "HTTP status 200; response includes total_analyses, by_analysis_type, recent_analyses",
       "actual_result": "HTTP status 200; all expected fields present",
-      "timestamp": "2026-08-13T16:15:54.606779+00:00",
-      "duration_ms": 2042,
+      "timestamp": "2026-08-14T10:56:24.839649+00:00",
+      "duration_ms": 37,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: GET /api/dashboard\nResponse status: 200\nResponse body: {\"total_analyses\": 11, \"total_images\": 11, \"total_detections\": 1, \"by_analysis_type\": {\"classification\": 9, \"image_quality\": 1, \"vehicle_detection\": 1}, \"by_category\": {\"poor\": 1, \"road_or_intersection\": 9}, \"recent_analyses\": [{\"id\": 11, \"created_at\": \"2026-08-13T16:15:50\", \"site_name\": \"Setup Fixture\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 2}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 2}, {\"id\": 10, \"created_at\": \"2026-08-13T16:15:46\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 3}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 3}, {\"id\": 9, \"created_at\": \"2026-08-13T16:15:28\", \"site_name\": \"UI Seed\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"process... (truncated)"
+      "logs": "Request: GET /api/dashboard\nResponse status: 200\nResponse body: {\"total_analyses\": 11, \"total_images\": 11, \"total_detections\": 1, \"by_analysis_type\": {\"classification\": 9, \"image_quality\": 1, \"vehicle_detection\": 1}, \"by_category\": {\"poor\": 1, \"road_or_intersection\": 9}, \"recent_analyses\": [{\"id\": 10, \"created_at\": \"2026-08-14T10:56:24\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 12}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 12}, {\"id\": 11, \"created_at\": \"2026-08-14T10:56:24\", \"site_name\": \"Setup Fixture\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"processing_time_ms\": 8}, \"primary_category\": \"road_or_intersection\", \"confidence_score\": 0.76, \"detections_count\": null, \"processing_time_ms\": 8}, {\"id\": 9, \"created_at\": \"2026-08-14T10:56:22\", \"site_name\": \"UI Seed\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"valid.jpg\", \"file_size_bytes\": 1302, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"road_or_intersection\", \"confidence\": 0.76, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.07}, {\"category\": \"vehicles\", \"confidence\": 0.44}], \"proce... (truncated)"
     },
     {
       "test_case_id": "TC-023",
@@ -275,7 +275,7 @@
       "status": "blocked",
       "expected_result": null,
       "actual_result": null,
-      "timestamp": "2026-08-13T16:15:56.649618+00:00",
+      "timestamp": "2026-08-14T10:56:24.877643+00:00",
       "duration_ms": 0,
       "error_message": "API flow 'simulate_timeout' is not implemented yet",
       "screenshot": null,
@@ -287,11 +287,11 @@
       "status": "passed",
       "expected_result": "HTTP status 201; response includes error_message; status='failed'",
       "actual_result": "HTTP status 201; all expected fields present; status='failed'",
-      "timestamp": "2026-08-13T16:15:56.651531+00:00",
-      "duration_ms": 2076,
+      "timestamp": "2026-08-14T10:56:24.880605+00:00",
+      "duration_ms": 99,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'image_quality', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 12, \"created_at\": \"2026-08-13T16:15:58\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"image_quality\", \"original_filename\": \"truncated.jpg\", \"file_size_bytes\": 1171, \"content_type\": \"image/jpeg\", \"status\": \"failed\", \"error_message\": \"image file is truncated (1 bytes not processed)\", \"result\": null, \"primary_category\": null, \"confidence_score\": null, \"detections_count\": null, \"processing_time_ms\": null}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'image_quality', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 12, \"created_at\": \"2026-08-14T10:56:24\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"image_quality\", \"original_filename\": \"truncated.jpg\", \"file_size_bytes\": 1171, \"content_type\": \"image/jpeg\", \"status\": \"failed\", \"error_message\": \"image file is truncated (1 bytes not processed)\", \"result\": null, \"primary_category\": null, \"confidence_score\": null, \"detections_count\": null, \"processing_time_ms\": null}"
     },
     {
       "test_case_id": "TC-025",
@@ -299,11 +299,11 @@
       "status": "passed",
       "expected_result": "HTTP status 404",
       "actual_result": "HTTP status 404",
-      "timestamp": "2026-08-13T16:15:58.728018+00:00",
-      "duration_ms": 4101,
+      "timestamp": "2026-08-14T10:56:24.979740+00:00",
+      "duration_ms": 173,
       "error_message": null,
       "screenshot": null,
-      "logs": "Created analysis id=13, deleted its stored file (b7279de1d70c4e8280f8e4721a4c4636.jpg), then GET /api/analysis/13/image -> status 404"
+      "logs": "Created analysis id=13, deleted its stored file (f815097d3a9640799c380e3893431edb.jpg), then GET /api/analysis/13/image -> status 404"
     },
     {
       "test_case_id": "TC-026",
@@ -311,8 +311,8 @@
       "status": "passed",
       "expected_result": "count_increased_by_one=True",
       "actual_result": "count_increased_by_one=True",
-      "timestamp": "2026-08-13T16:16:02.829947+00:00",
-      "duration_ms": 6123,
+      "timestamp": "2026-08-14T10:56:25.153772+00:00",
+      "duration_ms": 196,
       "error_message": null,
       "screenshot": null,
       "logs": "total_analyses before=13, after=14"
@@ -323,8 +323,8 @@
       "status": "passed",
       "expected_result": "analysis_visible_in_failed_list=True",
       "actual_result": "analysis_visible_in_failed_list=True",
-      "timestamp": "2026-08-13T16:16:08.953641+00:00",
-      "duration_ms": 4078,
+      "timestamp": "2026-08-14T10:56:25.350160+00:00",
+      "duration_ms": 80,
       "error_message": null,
       "screenshot": null,
       "logs": "Created failing analysis id=15 (truncated_jpeg_passes_verify + image_quality).\nGET /api/dashboard failed_analyses ids: [15, 12]"
@@ -335,11 +335,11 @@
       "status": "passed",
       "expected_result": "averages_match=True",
       "actual_result": "averages_match=True",
-      "timestamp": "2026-08-13T16:16:13.031959+00:00",
-      "duration_ms": 4077,
+      "timestamp": "2026-08-14T10:56:25.430649+00:00",
+      "duration_ms": 53,
       "error_message": null,
       "screenshot": null,
-      "logs": "Manually computed average=4.46 (n=13), dashboard reported=4.46"
+      "logs": "Manually computed average=15.0 (n=13), dashboard reported=15.0"
     },
     {
       "test_case_id": "TC-029",
@@ -347,8 +347,8 @@
       "status": "failed",
       "expected_result": "filter_controls_present=True",
       "actual_result": "filter_controls_present=False",
-      "timestamp": "2026-08-13T16:16:17.109955+00:00",
-      "duration_ms": 4275,
+      "timestamp": "2026-08-14T10:56:25.483927+00:00",
+      "duration_ms": 2073,
       "error_message": "expected filter_controls_present=True, got False",
       "screenshot": "artifacts/screenshots/TC-029_failed.png",
       "logs": null,
@@ -366,11 +366,11 @@
       "status": "passed",
       "expected_result": "detections_count=0",
       "actual_result": "detections_count=0",
-      "timestamp": "2026-08-13T16:16:21.386269+00:00",
-      "duration_ms": 2087,
+      "timestamp": "2026-08-14T10:56:27.561774+00:00",
+      "duration_ms": 128,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'vehicle_detection', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 17, \"created_at\": \"2026-08-13T16:16:23\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"vehicle_detection\", \"original_filename\": \"variant_1.jpg\", \"file_size_bytes\": 1303, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"total_count\": 0, \"count_by_type\": {\"private_car\": 0, \"truck\": 0, \"bus\": 0, \"motorcycle\": 0, \"other\": 0}, \"detections\": [], \"processing_time_ms\": 4}, \"primary_category\": null, \"confidence_score\": null, \"detections_count\": 0, \"processing_time_ms\": 4}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'vehicle_detection', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 17, \"created_at\": \"2026-08-14T10:56:27\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"vehicle_detection\", \"original_filename\": \"variant_1.jpg\", \"file_size_bytes\": 1303, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"total_count\": 0, \"count_by_type\": {\"private_car\": 0, \"truck\": 0, \"bus\": 0, \"motorcycle\": 0, \"other\": 0}, \"detections\": [], \"processing_time_ms\": 25}, \"primary_category\": null, \"confidence_score\": null, \"detections_count\": 0, \"processing_time_ms\": 25}"
     },
     {
       "test_case_id": "TC-031",
@@ -378,11 +378,11 @@
       "status": "passed",
       "expected_result": "detections_count=6",
       "actual_result": "detections_count=6",
-      "timestamp": "2026-08-13T16:16:23.473719+00:00",
-      "duration_ms": 2056,
+      "timestamp": "2026-08-14T10:56:27.690314+00:00",
+      "duration_ms": 118,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'vehicle_detection', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 18, \"created_at\": \"2026-08-13T16:16:25\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"vehicle_detection\", \"original_filename\": \"variant_4.jpg\", \"file_size_bytes\": 1304, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"total_count\": 6, \"count_by_type\": {\"private_car\": 3, \"truck\": 2, \"bus\": 0, \"motorcycle\": 1, \"other\": 0}, \"detections\": [{\"vehicle_type\": \"truck\", \"confidence\": 0.94, \"bounding_box\": {\"x\": 0.348, \"y\": 0.423, \"width\": 0.192, \"height\": 0.104}}, {\"vehicle_type\": \"private_car\", \"confidence\": 0.71, \"bounding_box\": {\"x\": 0.158, \"y\": 0.201, \"width\": 0.215, \"height\": 0.169}}, {\"vehicle_type\": \"private_car\", \"confidence\": 0.93, \"bounding_box\": {\"x\": 0.583, \"y\": 0.553, \"width\": 0.147, \"height\": 0.159}}, {\"vehicle_type\": \"motorcycle\", \"confidence\": 0.74, \"bounding_box\": {\"x\": 0.812, \"y\": 0.175, \"width\": 0.15, \"height\": 0.207}}, {\"vehicle_type\": \"private_car\", \"confidence\": 0.93, \"bounding_box\": {\"x\": 0.671, \"y\": 0.515, \"width\": 0.179, \"height\": 0.306}}, {\"vehicle_type\": \"truck\", \"confidence\": 0.91, \"bounding_box\": {\"x\": 0.076, \"y\": 0.482, \"width\": 0.193, \"height\": 0.306}}], \"processing_time_ms\": 3}, \"primary_category\": null, \"confidence_score\": null, \"detections_count\": 6, \"processing_time_ms\": 3}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'vehicle_detection', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 18, \"created_at\": \"2026-08-14T10:56:27\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"vehicle_detection\", \"original_filename\": \"variant_4.jpg\", \"file_size_bytes\": 1304, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"total_count\": 6, \"count_by_type\": {\"private_car\": 3, \"truck\": 2, \"bus\": 0, \"motorcycle\": 1, \"other\": 0}, \"detections\": [{\"vehicle_type\": \"truck\", \"confidence\": 0.94, \"bounding_box\": {\"x\": 0.348, \"y\": 0.423, \"width\": 0.192, \"height\": 0.104}}, {\"vehicle_type\": \"private_car\", \"confidence\": 0.71, \"bounding_box\": {\"x\": 0.158, \"y\": 0.201, \"width\": 0.215, \"height\": 0.169}}, {\"vehicle_type\": \"private_car\", \"confidence\": 0.93, \"bounding_box\": {\"x\": 0.583, \"y\": 0.553, \"width\": 0.147, \"height\": 0.159}}, {\"vehicle_type\": \"motorcycle\", \"confidence\": 0.74, \"bounding_box\": {\"x\": 0.812, \"y\": 0.175, \"width\": 0.15, \"height\": 0.207}}, {\"vehicle_type\": \"private_car\", \"confidence\": 0.93, \"bounding_box\": {\"x\": 0.671, \"y\": 0.515, \"width\": 0.179, \"height\": 0.306}}, {\"vehicle_type\": \"truck\", \"confidence\": 0.91, \"bounding_box\": {\"x\": 0.076, \"y\": 0.482, \"width\": 0.193, \"height\": 0.306}}], \"processing_time_ms\": 25}, \"primary_category\": null, \"confidence_score\": null, \"detections_count\": 6, \"processing_time_ms\": 25}"
     },
     {
       "test_case_id": "TC-032",
@@ -390,11 +390,11 @@
       "status": "passed",
       "expected_result": "response includes result",
       "actual_result": "all expected fields present",
-      "timestamp": "2026-08-13T16:16:25.530345+00:00",
-      "duration_ms": 2031,
+      "timestamp": "2026-08-14T10:56:27.809354+00:00",
+      "duration_ms": 82,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'image_quality', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 19, \"created_at\": \"2026-08-13T16:16:27\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"image_quality\", \"original_filename\": \"dark.jpg\", \"file_size_bytes\": 1303, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"is_blurry\": true, \"blur_score\": 0.0, \"is_dark\": true, \"brightness_score\": 10.0, \"quality\": \"poor\", \"processing_time_ms\": 5}, \"primary_category\": \"poor\", \"confidence_score\": null, \"detections_count\": null, \"processing_time_ms\": 5}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'image_quality', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 19, \"created_at\": \"2026-08-14T10:56:27\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"image_quality\", \"original_filename\": \"dark.jpg\", \"file_size_bytes\": 1303, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"is_blurry\": true, \"blur_score\": 0.0, \"is_dark\": true, \"brightness_score\": 10.0, \"quality\": \"poor\", \"processing_time_ms\": 26}, \"primary_category\": \"poor\", \"confidence_score\": null, \"detections_count\": null, \"processing_time_ms\": 26}"
     },
     {
       "test_case_id": "TC-033",
@@ -402,11 +402,11 @@
       "status": "passed",
       "expected_result": "primary_category='unclassified'",
       "actual_result": "primary_category='unclassified'",
-      "timestamp": "2026-08-13T16:16:27.561730+00:00",
-      "duration_ms": 2077,
+      "timestamp": "2026-08-14T10:56:27.892131+00:00",
+      "duration_ms": 124,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 20, \"created_at\": \"2026-08-13T16:16:29\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"variant_14.jpg\", \"file_size_bytes\": 1305, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"unclassified\", \"confidence\": 0.85, \"alternatives\": [{\"category\": \"vehicles\", \"confidence\": 0.37}, {\"category\": \"industrial_site\", \"confidence\": 0.33}], \"processing_time_ms\": 28}, \"primary_category\": \"unclassified\", \"confidence_score\": 0.85, \"detections_count\": null, \"processing_time_ms\": 28}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 20, \"created_at\": \"2026-08-14T10:56:27\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"variant_14.jpg\", \"file_size_bytes\": 1305, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"unclassified\", \"confidence\": 0.85, \"alternatives\": [{\"category\": \"vehicles\", \"confidence\": 0.37}, {\"category\": \"industrial_site\", \"confidence\": 0.33}], \"processing_time_ms\": 33}, \"primary_category\": \"unclassified\", \"confidence_score\": 0.85, \"detections_count\": null, \"processing_time_ms\": 33}"
     },
     {
       "test_case_id": "TC-034",
@@ -414,11 +414,11 @@
       "status": "passed",
       "expected_result": "confidence_score=0.56",
       "actual_result": "confidence_score=0.56",
-      "timestamp": "2026-08-13T16:16:29.639132+00:00",
-      "duration_ms": 2054,
+      "timestamp": "2026-08-14T10:56:28.017076+00:00",
+      "duration_ms": 162,
       "error_message": null,
       "screenshot": null,
-      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 21, \"created_at\": \"2026-08-13T16:16:31\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"variant_16.jpg\", \"file_size_bytes\": 1305, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"vehicles\", \"confidence\": 0.56, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.42}, {\"category\": \"unclassified\", \"confidence\": 0.38}], \"processing_time_ms\": 3}, \"primary_category\": \"vehicles\", \"confidence_score\": 0.56, \"detections_count\": null, \"processing_time_ms\": 3}"
+      "logs": "Request: POST /api/analysis form={'site_name': 'Test Site', 'capture_datetime': '2026-01-01T00:00:00', 'analysis_type': 'classification', 'image_source': 'drone'}\nResponse status: 201\nResponse body: {\"id\": 21, \"created_at\": \"2026-08-14T10:56:28\", \"site_name\": \"Test Site\", \"capture_datetime\": \"2026-01-01T00:00:00\", \"image_source\": \"drone\", \"analysis_type\": \"classification\", \"original_filename\": \"variant_16.jpg\", \"file_size_bytes\": 1305, \"content_type\": \"image/jpeg\", \"status\": \"completed\", \"error_message\": null, \"result\": {\"category\": \"vehicles\", \"confidence\": 0.56, \"alternatives\": [{\"category\": \"building\", \"confidence\": 0.42}, {\"category\": \"unclassified\", \"confidence\": 0.38}], \"processing_time_ms\": 34}, \"primary_category\": \"vehicles\", \"confidence_score\": 0.56, \"detections_count\": null, \"processing_time_ms\": 34}"
     },
     {
       "test_case_id": "TC-035",
@@ -426,11 +426,11 @@
       "status": "passed",
       "expected_result": "results_match=True",
       "actual_result": "results_match=True",
-      "timestamp": "2026-08-13T16:16:31.693803+00:00",
-      "duration_ms": 4108,
+      "timestamp": "2026-08-14T10:56:28.179244+00:00",
+      "duration_ms": 174,
       "error_message": null,
       "screenshot": null,
-      "logs": "Result 1: {'category': 'road_or_intersection', 'confidence': 0.76, 'alternatives': [{'category': 'building', 'confidence': 0.07}, {'category': 'vehicles', 'confidence': 0.44}], 'processing_time_ms': 5}\nResult 2: {'category': 'road_or_intersection', 'confidence': 0.76, 'alternatives': [{'category': 'building', 'confidence': 0.07}, {'category': 'vehicles', 'confidence': 0.44}], 'processing_time_ms': 4}"
+      "logs": "Result 1: {'category': 'road_or_intersection', 'confidence': 0.76, 'alternatives': [{'category': 'building', 'confidence': 0.07}, {'category': 'vehicles', 'confidence': 0.44}], 'processing_time_ms': 9}\nResult 2: {'category': 'road_or_intersection', 'confidence': 0.76, 'alternatives': [{'category': 'building', 'confidence': 0.07}, {'category': 'vehicles', 'confidence': 0.44}], 'processing_time_ms': 7}"
     }
   ],
   "failures": [
@@ -440,8 +440,8 @@
       "status": "failed",
       "expected_result": "filter_controls_present=True",
       "actual_result": "filter_controls_present=False",
-      "timestamp": "2026-08-13T16:16:17.109955+00:00",
-      "duration_ms": 4275,
+      "timestamp": "2026-08-14T10:56:25.483927+00:00",
+      "duration_ms": 2073,
       "error_message": "expected filter_controls_present=True, got False",
       "screenshot": "artifacts/screenshots/TC-029_failed.png",
       "logs": null,
@@ -462,29 +462,29 @@
   },
   "slowest": [
     {
-      "id": "TC-026",
-      "name": "Dashboard analysis count updates after a new analysis",
-      "duration_ms": 6123
+      "id": "TC-008",
+      "name": "Display the analysis result after a successful run",
+      "duration_ms": 21971
     },
     {
       "id": "TC-009",
       "name": "Open the dashboard",
-      "duration_ms": 4376
+      "duration_ms": 2473
     },
     {
       "id": "TC-010",
       "name": "Review a previous analysis from the dashboard",
-      "duration_ms": 4338
+      "duration_ms": 2472
     },
     {
       "id": "TC-029",
       "name": "Dashboard supports filtering and sorting",
-      "duration_ms": 4275
+      "duration_ms": 2073
     },
     {
-      "id": "TC-035",
-      "name": "Same image submitted twice gives the same result",
-      "duration_ms": 4108
+      "id": "TC-002",
+      "name": "Run classification analysis on a valid image",
+      "duration_ms": 345
     }
   ],
   "coverage": {

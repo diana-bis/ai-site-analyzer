@@ -92,7 +92,7 @@ export default function UploadPage() {
     return (
       <Container maxWidth="sm" sx={{ py: 4 }}>
         <Stack spacing={2}>
-          <ResultCard analysis={result} />
+          <ResultCard analysis={result} showImage />
           <Button variant="outlined" onClick={handleReset}>
             Analyze another
           </Button>

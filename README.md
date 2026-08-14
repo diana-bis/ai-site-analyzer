@@ -15,6 +15,27 @@ the product end-to-end and produces a QA report with fix recommendations.
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the design decisions
 behind both parts.
 
+## Screenshots
+
+**Part A** — upload, result, dashboard, and analysis detail (with the
+vehicle-detection bounding box overlay):
+
+<table>
+<tr>
+<td><img src="docs/screenshots/upload.png" width="400"><br>Upload</td>
+<td><img src="docs/screenshots/result.png" width="400"><br>Result (right after submitting)</td>
+</tr>
+<tr>
+<td><img src="docs/screenshots/dashboard.png" width="400"><br>Dashboard</td>
+<td><img src="docs/screenshots/analysis-detail.png" width="400"><br>Analysis detail</td>
+</tr>
+</table>
+
+**Part B** — a full `run_agentic_tests.py` run and the resulting
+`report.html`, including the `TC-029` failure card:
+
+<video src="docs/screenshots/report-demo.mp4" controls width="600"></video>
+
 ## Quick Start — Docker Compose
 
 Requires Docker Desktop.
