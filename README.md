@@ -34,7 +34,7 @@ vehicle-detection bounding box overlay):
 **Part B** — a full `run_agentic_tests.py` run and the resulting
 `report.html`, including the `TC-029` failure card:
 
-<video src="docs/screenshots/report-demo.mp4" controls width="600"></video>
+https://github.com/user-attachments/assets/ce9d086c-55bf-480b-af34-f9aa6e5f14d9
 
 ## Quick Start — Docker Compose
 
