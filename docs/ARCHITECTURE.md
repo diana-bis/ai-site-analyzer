@@ -161,9 +161,11 @@ pass silently. Vocabulary can be shared. Expectations cannot.
 flowchart TD
     Planner["TestPlannerAgent.generate_test_cases()<br/>runs once — 35 test cases"] --> Orchestrator
 
-    subgraph Orchestrator["Orchestrator.run(test_cases)<br/>calls each agent below, in order, once per test case —<br/>none of these agents call each other directly"]
+    subgraph Orchestrator["Orchestrator.run(test_cases)"]
         direction TB
+        Note["calls each agent below, in order, once per test case —<br/>none of these agents call each other directly"]
         Exec["ExecutionAgent.run(test_case)<br/>dispatches to ApiRunner / UiRunner<br/>returns raw data only, no verdict"]
+        Note --> Exec
         Valid["ValidationAgent.validate(...)<br/>the only agent that decides pass/fail"]
         Decision{status}
         Fix["FixRecommendationAgent.analyze(...)<br/>called only on failure —<br/>only 'cause' is LLM-generated"]
