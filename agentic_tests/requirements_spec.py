@@ -3,7 +3,11 @@ Defines the expected API endpoints according to the assignment specification.
 
 This file is intentionally independent from the backend implementation.
 The automated tests use this contract to verify that the API behaves as
-required, rather than relying on backend code that may contain bugs
+required, rather than relying on backend code that may contain bugs.
+
+Only endpoints where "call it, check status + fields" is the entire test, belong here. 
+Cases that need setup beyond a single call (a crafted fixture, a multi-step procedure) are 
+hand-written in test_planner_agent.py instead.
 """
 
 # Expected behavior of every public API endpoint

@@ -1,0 +1,22 @@
+services:
+  # FastAPI backend container
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/data:/app/data
+
+  # React frontend container
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+
+    # Backend URL used by the frontend
+    environment:
+      VITE_API_BASE_URL: http://localhost:8000
+
+    # Start the backend before the frontend
+    depends_on:
+      - backend
