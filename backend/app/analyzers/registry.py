@@ -1,3 +1,6 @@
+# The only place that knows all concrete analyzers.
+# Callers use get_analyzer() and talk to BaseAnalyzer only - adding a 4th
+# analyzer means one new dict entry, no caller ever changes.
 from app.analyzers.base import BaseAnalyzer
 from app.analyzers.classification import ClassificationAnalyzer
 from app.analyzers.image_quality import ImageQualityAnalyzer

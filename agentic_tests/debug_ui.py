@@ -1,9 +1,9 @@
-"""
+r"""
 Manually run one UI flow with a visible browser, for debugging selectors.
 Requires the backend (:8000) and frontend (:5173) to already be running.
 
-Usage:
-    python debug_ui.py <flow_name>
+Usage (from agentic_tests/, using its own venv - see README.md):
+    .venv\Scripts\python.exe debug_ui.py <flow_name>
 
 Available flows: display_result, open_dashboard, review_previous_analysis,
 dashboard_filters

@@ -47,9 +47,6 @@ class FixRecommendationAgent:
             return "Backend - API"
         return "Unknown component"
 
-    # Template by deviation shape, not by echoing the error - "investigate
-    # X to resolve: <the error>" is circular, it repeats what's already
-    # shown as expected_result/actual_result instead of pointing anywhere.
     def _suggest_recommendation(self, test_case, component, validation_result):
         deviations = validation_result.get("deviations", [])
         if not deviations:
